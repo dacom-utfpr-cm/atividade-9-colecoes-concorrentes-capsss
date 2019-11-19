@@ -15,7 +15,19 @@ public class Consumidor implements Runnable{
     public void run() {
         try {
             while(true){
-                System.out.println("consumido: " + array.take());
+                if(array.size() == 10){                    
+                    Carta carta;
+                    
+                    carta = (Carta) array.take();
+                    System.out.println("thread " + Thread.currentThread().getId() + " consumiu: " + carta.simbolo + " de " + carta.naipe);
+                    carta = (Carta) array.take();
+                    System.out.println("thread " + Thread.currentThread().getId() + " consumiu: " + carta.simbolo + " de " + carta.naipe);
+                    carta = (Carta) array.take();
+                    System.out.println("thread " + Thread.currentThread().getId() + " consumiu: " + carta.simbolo + " de " + carta.naipe);
+                    
+                    Thread.sleep(1000);
+                }
+                
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Consumidor.class.getName()).log(Level.SEVERE, null, ex);
